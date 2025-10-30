@@ -78,7 +78,7 @@ resource networkSecurityGroup 'Microsoft.Network/networkSecurityGroups@2023-05-0
           protocol: 'Tcp'
           access: 'Allow'
           direction: 'Inbound'
-          sourceAddressPrefix: '*'
+          sourceAddressPrefix: '*'  // SECURITY: Restrict to specific IPs in production or use Azure Bastion
           sourcePortRange: '*'
           destinationAddressPrefix: '*'
           destinationPortRange: '3389'
@@ -330,7 +330,7 @@ resource hyperVExtension 'Microsoft.Compute/virtualMachines/extensions@2023-09-0
       fileUris: []
     }
     protectedSettings: {
-      commandToExecute: 'powershell.exe -ExecutionPolicy Bypass -Command "Install-WindowsFeature -Name Hyper-V, RSAT-Hyper-V-Tools, Hyper-V-PowerShell -IncludeManagementTools; Restart-Computer -Force"'
+      commandToExecute: 'powershell.exe -ExecutionPolicy Bypass -Command "$result = Install-WindowsFeature -Name Hyper-V, RSAT-Hyper-V-Tools, Hyper-V-PowerShell -IncludeManagementTools; if ($result.Success) { Restart-Computer -Force } else { Write-Error \'Hyper-V installation failed\'; exit 1 }"'
     }
   }
 }

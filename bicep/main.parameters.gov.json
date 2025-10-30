@@ -18,6 +18,7 @@
       "value": "azureadmin"
     },
     "windowsAdminPassword": {
+      "// IMPORTANT: Replace with your Key Vault details": "See DEPLOYMENT_GUIDE.md for setup instructions",
       "reference": {
         "keyVault": {
           "id": "/subscriptions/<subscription-id>/resourceGroups/<rg-name>/providers/Microsoft.KeyVault/vaults/<vault-name>"

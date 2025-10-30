@@ -176,18 +176,18 @@ $configPath = "$vmStoragePath\config.json"
 $configFile | Out-File -FilePath $configPath -Encoding UTF8
 Write-Log "Configuration saved to: $configPath"
 
-# Set nested virtualization MAC address spoofing (required for nested Hyper-V)
-Write-Log "Configuring nested virtualization settings..."
-Get-VM | ForEach-Object {
-    Set-VMNetworkAdapter -VMName $_.Name -MacAddressSpoofing On
-    Set-VMProcessor -VMName $_.Name -ExposeVirtualizationExtensions $true
-}
+# Note: Nested virtualization settings will be configured after VMs are created
+Write-Log "Note: Configure nested virtualization settings after creating VMs:" -Level "INFO"
+Write-Log "  Set-VMNetworkAdapter -VMName <vm-name> -MacAddressSpoofing On" -Level "INFO"
+Write-Log "  Set-VMProcessor -VMName <vm-name> -ExposeVirtualizationExtensions `$true" -Level "INFO"
 
 Write-Log "Azure Local Virtual configuration completed successfully!" -Level "INFO"
 Write-Log "Next steps:" -Level "INFO"
-Write-Log "1. Place Windows Server 2022 ISO in $isoPath" -Level "INFO"
-Write-Log "2. Run Create-AzLocalVMs.ps1 to create nested VMs" -Level "INFO"
-Write-Log "3. Run Register-AzLocalArc.ps1 to register with Azure Arc" -Level "INFO"
+Write-Log "1. Place Windows Server 2022 Datacenter Azure Edition ISO in $isoPath" -Level "INFO"
+Write-Log "2. Use Hyper-V Manager to create nested cluster VMs" -Level "INFO"
+Write-Log "3. Configure nested VMs with MAC address spoofing and virtualization extensions" -Level "INFO"
+Write-Log "4. Install Azure Arc agent and connect to Azure Government" -Level "INFO"
+Write-Log "5. Deploy Azure Local cluster using Windows Admin Center or PowerShell" -Level "INFO"
 
 # Export configuration for use by other scripts
 return @{

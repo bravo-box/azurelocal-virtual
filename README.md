@@ -191,11 +191,12 @@ Running this solution in Azure Government will incur costs. Key cost factors:
 ## Security Best Practices
 
 1. **Use Azure Key Vault** for storing admin credentials
-2. **Enable Azure Bastion** for secure RDP access without public IPs
-3. **Implement RBAC** with least privilege access
-4. **Enable Azure Monitor** and Log Analytics for monitoring
-5. **Regular Updates**: Keep Windows Server and Azure agents updated
-6. **Network Isolation**: Use NSG rules to restrict access to known IPs
+2. **Enable Azure Bastion** for secure RDP access without exposing RDP publicly
+3. **Restrict NSG Rules**: The default template allows RDP from any IP (`*`) for ease of setup. **For production environments**, modify the NSG rules to restrict `sourceAddressPrefix` to specific IP ranges or use Azure Bastion exclusively
+4. **Implement RBAC** with least privilege access
+5. **Enable Azure Monitor** and Log Analytics for monitoring
+6. **Regular Updates**: Keep Windows Server and Azure agents updated
+7. **Network Isolation**: Use private endpoints where possible
 
 ## Contributing
 
