@@ -1,0 +1,33 @@
+# Azure deployment artifacts
+*.log
+
+# Bicep build artifacts - exclude compiled ARM templates
+bicep/**/*.json
+!bicep/**/*.parameters.json
+!bicep/**/*.parameters.*.json
+
+# Local dev artifacts
+.DS_Store
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.bak
+*~
+
+# Node modules (if any)
+node_modules/
+
+# Sensitive data
+*.pfx
+*.pem
+*.key
+secrets/
+.env
+
+# Build outputs
+dist/
+out/
+bin/
+obj/
