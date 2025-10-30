@@ -1,0 +1,59 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "<azure-gov-region>"
+    },
+    "vmName": {
+      "value": "<vm-name>"
+    },
+    "vmSize": {
+      "value": "Standard_E32s_v5"
+    },
+    "windowsAdminUsername": {
+      "value": "<admin-username>"
+    },
+    "windowsAdminPassword": {
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/<subscription-id>/resourceGroups/<rg-name>/providers/Microsoft.KeyVault/vaults/<vault-name>"
+        },
+        "secretName": "<secret-name>"
+      }
+    },
+    "virtualNetworkName": {
+      "value": "<vnet-name>"
+    },
+    "addressPrefix": {
+      "value": "10.0.0.0/16"
+    },
+    "subnetName": {
+      "value": "<subnet-name>"
+    },
+    "subnetAddressPrefix": {
+      "value": "10.0.1.0/24"
+    },
+    "publicIPAllocationMethod": {
+      "value": "Static"
+    },
+    "deployBastion": {
+      "value": true
+    },
+    "bastionSubnetPrefix": {
+      "value": "10.0.250.0/24"
+    },
+    "azureCloudEnvironment": {
+      "value": "AzureUSGovernment"
+    },
+    "workspaceId": {
+      "value": ""
+    },
+    "resourceTags": {
+      "value": {
+        "Project": "AzureLocalVirtual",
+        "Environment": "Lab"
+      }
+    }
+  }
+}

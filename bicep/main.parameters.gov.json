@@ -1,0 +1,62 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "location": {
+      "value": "usgovvirginia"
+    },
+    "deployManagement": {
+      "value": true
+    },
+    "vmName": {
+      "value": "AzLocalBox-Host"
+    },
+    "vmSize": {
+      "value": "Standard_E32s_v5"
+    },
+    "windowsAdminUsername": {
+      "value": "azureadmin"
+    },
+    "windowsAdminPassword": {
+      "// IMPORTANT: Replace with your Key Vault details": "See DEPLOYMENT_GUIDE.md for setup instructions",
+      "reference": {
+        "keyVault": {
+          "id": "/subscriptions/<subscription-id>/resourceGroups/<rg-name>/providers/Microsoft.KeyVault/vaults/<vault-name>"
+        },
+        "secretName": "adminPassword"
+      }
+    },
+    "virtualNetworkName": {
+      "value": "AzLocalBox-VNet"
+    },
+    "addressPrefix": {
+      "value": "10.0.0.0/16"
+    },
+    "subnetName": {
+      "value": "AzLocalBox-Subnet"
+    },
+    "subnetAddressPrefix": {
+      "value": "10.0.1.0/24"
+    },
+    "deployBastion": {
+      "value": true
+    },
+    "bastionSubnetPrefix": {
+      "value": "10.0.250.0/24"
+    },
+    "azureCloudEnvironment": {
+      "value": "AzureUSGovernment"
+    },
+    "workspaceName": {
+      "value": "AzLocalBox-Workspace"
+    },
+    "resourceTags": {
+      "value": {
+        "Project": "AzureLocalVirtual",
+        "Environment": "Lab",
+        "Solution": "LocalBox",
+        "Compliance": "FedRAMP"
+      }
+    }
+  }
+}
